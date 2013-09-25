@@ -3,10 +3,14 @@
 # require_relative 'finished_madlibs'
 # require_relative 'content_words_hash'
 
+puts "What's your name?"
+name = gets.chomp
+
 user_words = Hash.new
 content_words = Hash.new
 
 content_words = {
+	love: 'musical genre'
 	evening: 'noun',
 	patient: 'noun',
 	deserted: 'adjective',
@@ -66,7 +70,11 @@ def build_new_poem(arrayed_poem, hash)
     new_poem = arrayed_poem.each.to_s.gsub(/key/, value)
     return new_poem
 
-    File.open('finished_madlibs.md', "a+") {|file| file.write(Time.now + new_poem + "\n")}
+    File.open('finished_madlibs.md', "a+") do|file| 
+    	file.write(
+    		"The #{user_words[:love]} song of J. #{name} Prufrock: \n
+    		#{Time.now}: \n#{new_poem}. \n")
+    end
   end
 end
 
