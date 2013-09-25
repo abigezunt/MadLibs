@@ -46,9 +46,6 @@ end
 user_words = build_replacement_hash(parts_of_speech)
 
 
-
-
-
 # automatically add line breaks between each line, 
 # add each line to an array
 
@@ -63,11 +60,16 @@ end
 
 poem = file_to_array('lovesong')
 
-user_words.each do |key, value|
-		new_poem = poem.gsub(key.to_s, value)
-		return new_poem
-		File.open('finished_madlibs.md', "w") {|file| file.write(new_poem)}
+def build_new_poem(arrayed_poem)
+  user_words.each do |key, value|
+    new_poem = arrayed_poem.gsub(key.to_s, value)
+    return new_poem
+    File.open('finished_madlibs.md', "w") {|file| file.write(new_poem)}
+  end
 end
+
+puts build_new_poem(poem)
+
 
 # Unused Ideas Repository:
 
