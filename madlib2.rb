@@ -5,24 +5,24 @@ user_words = Hash.new
 parts_of_speech = Hash.new
 
 parts_of_speech = {
-	evening: 'noun'
-	patient: 'noun'
-	deserted: 'adjective'
-	muttering: 'gerund'
-	restless: 'adjective'
-	sawdust: 'noun'
-	restaurants: 'plural noun'
-	oyster: 'animal'
-	tedious: 'adjective'
-	insidious: 'adjective'
-	oh: 'exclamation'
-	make: 'verb'
-	overwhelming: 'adjective'
-	lead: 'verb'
-	a_hundred: 'number'
-	yellow: 'color'
-	talking: 'gerund'
-	women: 'plural noun'
+	evening: 'noun',
+	patient: 'noun',
+	deserted: 'adjective',
+	muttering: 'gerund',
+	restless: 'adjective',
+	sawdust: 'noun',
+	restaurants: 'plural noun',
+	oyster: 'animal',
+	tedious: 'adjective',
+	insidious: 'adjective',
+	oh: 'exclamation',
+	make: 'verb',
+	overwhelming: 'adjective',
+	lead: 'verb',
+	a_hundred: 'number',
+	yellow: 'color',
+	talking: 'gerund',
+	women: 'plural noun',
 }
 
 
@@ -39,7 +39,7 @@ def build_replacement_hash(your_hash)
   your_hash.each do |key, value| 
 	get_word(key.to_s)
     replacement_hash[key: input]
-    return: replacement_hash
+    return replacement_hash
   end
 end
 
@@ -58,7 +58,7 @@ def file_to_array(filename)
 	end
 end
 
-poem = file_to_array('lovesong')
+poem = file_to_array('lovesong.txt')
 
 def build_new_poem(arrayed_poem)
   user_words.each do |key, value|
