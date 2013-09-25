@@ -1,7 +1,6 @@
 require_relative 'lovesong'
 require_relative 'finished_madlibs'
 
-
 user_words = Hash.new
 parts_of_speech = Hash.new
 
@@ -33,12 +32,15 @@ parts_of_speech = {
 def get_word(word)
 	puts "Give me a #{parts_of_speech[word.to_sym]}."
 	input = gets.chomp
-	user_words[word: input]
+	return input
 end
 
 parts_of_speech.each do |key, value| 
 	get_word(parts_of_speech[key])
+	user_words[word: input]
 end
+
+
 
 
 # automatically add line breaks between each line, 
@@ -61,6 +63,8 @@ user_words.each do |key, value|
 		File.open('finished_madlibs.md', "w") {|file| file.write(new_poem)}
 end
 
+# Unused Ideas Repository:
+
 # search for words from my hash in each line and 
 # replace them with their replacements from user_words hash
 
@@ -80,7 +84,6 @@ end
 #
 # internet also says:
 #File.open(file_name, "w") {|file| file.puts output_of_gsub}
-
 
 
 # File.write('my_hash.txt', 'w+')
