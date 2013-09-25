@@ -63,9 +63,10 @@ end
 def build_new_poem(arrayed_poem, hash)
   hash.each do |key, value|
   	new_poem = Array.new
-    new_poem = arrayed_poem.each.to_s.gsub(/key/, value).push
+    new_poem = arrayed_poem.each.to_s.gsub(/key/, value)
     return new_poem
-    File.open('finished_madlibs.md', "a+") {|file| file.write(new_poem)}
+
+    File.open('finished_madlibs.md', "a+") {|file| file.write(Time.now + new_poem + "\n")}
   end
 end
 
