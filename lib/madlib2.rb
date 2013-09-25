@@ -49,7 +49,7 @@ user_words = build_second_hash(content_words, user_words)
 
 # save progress:
 File.open('finished_madlibs.md', "w") {|file| file.write(user_words.inspect)}
-
+File.open('finished_madlibs.md', "w") {|file| file.write(user_words)}
 # automatically add line breaks between each line, 
 # add each line to an array
 
@@ -62,10 +62,6 @@ def file_to_array(filename)
 	end
 end
 
-poem = file_to_array('lovesong.txt')
-
-# ## Try this next: arrayed_poem = poem.split(/\s{3,}/)
-
 def build_new_poem(arrayed_poem, hash)
   hash.each do |key, value|
     new_poem = arrayed_poem.gsub(key.to_s, value)
@@ -74,10 +70,13 @@ def build_new_poem(arrayed_poem, hash)
   end
 end
 
+poem = file_to_array('lovesong.txt')
 puts build_new_poem(poem, user_words)
 
 
 # Unused Ideas Repository:
+
+# ## Try this next: arrayed_poem = poem.split(/\s{3,}/)
 
 # search for words from my hash in each line and 
 # replace them with their replacements from user_words hash
