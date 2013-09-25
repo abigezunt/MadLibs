@@ -23,12 +23,10 @@ content_words = {
 	women: 'plural noun',
 }
 
-If content_words.length > 2
-def prompt
-	print "> "
-end
 
-def build_hash(filename)
+
+
+def build_hash(filename, hash)
 	file = File.open
 	poem = File.read
 	puts 'identify any content words in these lines, and their parts of speech.'
@@ -41,4 +39,7 @@ def build_hash(filename)
 		end
 	end
 end
+
+
+build_hash('lovesong', content_words) if content_words.length > 2
 
