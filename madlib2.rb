@@ -1,4 +1,5 @@
 require_relative 'lovesong'
+require_relative 'finished_madlibs'
 
 
 user_words = Hash.new
@@ -47,41 +48,44 @@ def file_to_array(filename)
 	file = File.open(filename)
 	file.each_line do |line|
 		arr = []
-		arr.push line + "\n"
+		arr.push(line + "\n")
 		return arr
 	end
 end
 
 poem = file_to_array('lovesong')
 
+user_words.each do |key, value|
+		new_poem = poem.gsub(key.to_s, value)
+		return new_poem
+		File.open('finished_madlibs.md', "w") {|file| file.write(new_poem)}
+end
 
 # search for words from my hash in each line and 
 # replace them with their replacements from user_words hash
 
-user_words.each do |key, value|
-	
-		poem.each do |line|
-			words = line.split(" ")
-			if words.include?(key)
-				i = words[key].index 
-				words.delete_at(i)
-				words.insert(i, user_words[key])
-			end
-		end
-end
-
-# Trying 
 # user_words.each do |key, value|
-# 		my_poem.sub(key.to_s, "#{" + key + "}")
+# 		poem.each do |line|
+# 			words = line.split(" ")
+# 			if words.include?(key)
+# 				i = words[key].index 
+# 				words.delete_at(i)
+# 				words.insert(i, user_words[key])
+# 			end
+# 		end
 # end
+
+# 
+
+#
 # internet also says:
 #File.open(file_name, "w") {|file| file.puts output_of_gsub}
 
 
 
-File.write('my_hash.txt', 'w+')
+# File.write('my_hash.txt', 'w+')
 
-File.open(yourfile, 'w') { |file| file.write("your text") }
+# File.open(yourfile, 'w') { |file| file.write("your text") }
 
-File.open(file_name, "w") {|file| file.puts output_of_gsub}
+# File.open(file_name, "w") {|file| file.puts output_of_gsub}
 
