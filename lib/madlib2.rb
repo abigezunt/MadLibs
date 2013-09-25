@@ -40,7 +40,7 @@ end
 def build_second_hash(first_hash, second_hash)
   first_hash.each do |key, value| 
   	replacement = get_word(value)
-    second_hash[:key] = replacement
+    second_hash[key.to_sym] = replacement
   end
   return second_hash
 end
