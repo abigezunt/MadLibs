@@ -1,0 +1,1 @@
+{:evening=>"elephant", :patient=>"fascist", :deserted=>"scrupulous"}

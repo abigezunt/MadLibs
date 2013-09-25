@@ -1,1 +1,1 @@
-{:key=>"kittens"}
+{:evening=>"marker", :patient=>"pencil", :deserted=>"yellow"}{:evening=>"phone", :patient=>"laptop", :deserted=>"stupendous"}{:evening=>"hat", :patient=>"car", :deserted=>"big"}{:evening=>"hat", :patient=>"coat", :deserted=>"small"}{:evening=>"hat", :patient=>"cloak", :deserted=>"warm"}{:evening=>"car", :patient=>"boat", :deserted=>"wet"}

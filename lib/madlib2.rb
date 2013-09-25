@@ -10,23 +10,22 @@ content_words = {
 	evening: 'noun',
 	patient: 'noun',
 	deserted: 'adjective',
-	muttering: 'gerund',
-	restless: 'adjective',
-	sawdust: 'noun',
-	restaurants: 'plural noun',
-	oyster: 'animal',
-	tedious: 'adjective',
-	insidious: 'adjective',
-	oh: 'exclamation',
-	make: 'verb',
-	overwhelming: 'adjective',
-	lead: 'verb',
-	a_hundred: 'number',
-	yellow: 'color',
-	talking: 'gerund',
-	women: 'plural noun',
+	# muttering: 'gerund',
+	# restless: 'adjective',
+	# sawdust: 'noun',
+	# restaurants: 'plural noun',
+	# oyster: 'animal',
+	# tedious: 'adjective',
+	# insidious: 'adjective',
+	# oh: 'exclamation',
+	# make: 'verb',
+	# overwhelming: 'adjective',
+	# lead: 'verb',
+	# a_hundred: 'number',
+	# yellow: 'color',
+	# talking: 'gerund',
+	# women: 'plural noun',
 }
-
 
 # use method get_word to prompt user for replacement words
 # populate the hash user_words with their input
@@ -48,8 +47,7 @@ end
 user_words = build_second_hash(content_words, user_words)
 
 # save progress:
-File.open('finished_madlibs.md', "w") {|file| file.write(user_words.inspect)}
-File.open('finished_madlibs.md', "w") {|file| file.write(user_words)}
+File.open('finished_madlibs.md', "a+") {|file| file.write(user_words)}
 # automatically add line breaks between each line, 
 # add each line to an array
 
@@ -64,13 +62,15 @@ end
 
 def build_new_poem(arrayed_poem, hash)
   hash.each do |key, value|
-    new_poem = arrayed_poem.gsub(key.to_s, value)
+  	new_poem = Array.new
+    new_poem = arrayed_poem.each.to_s.gsub(/key/, value).push
     return new_poem
-    File.open('finished_madlibs.md', "w+") {|file| file.write(new_poem)}
+    File.open('finished_madlibs.md', "a+") {|file| file.write(new_poem)}
   end
 end
 
-poem = file_to_array('lovesong.txt')
+file_path = File.expand_path('madlibs/lovesong.txt', File.dirname(__FILE__))
+poem = file_to_array(file_path)
 puts build_new_poem(poem, user_words)
 
 
