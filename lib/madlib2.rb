@@ -1,8 +1,32 @@
-require_relative 'lovesong'
-require_relative 'finished_madlibs'
-require_relative 'content_words_hash'
+# Kai says I don't need to require anything unless I need code from those files.
+# require_relative 'lovesong'
+# require_relative 'finished_madlibs'
+# require_relative 'content_words_hash'
 
 user_words = Hash.new
+content_words = Hash.new
+
+content_words = {
+	evening: 'noun',
+	patient: 'noun',
+	deserted: 'adjective',
+	muttering: 'gerund',
+	restless: 'adjective',
+	sawdust: 'noun',
+	restaurants: 'plural noun',
+	oyster: 'animal',
+	tedious: 'adjective',
+	insidious: 'adjective',
+	oh: 'exclamation',
+	make: 'verb',
+	overwhelming: 'adjective',
+	lead: 'verb',
+	a_hundred: 'number',
+	yellow: 'color',
+	talking: 'gerund',
+	women: 'plural noun',
+}
+
 
 # use method get_word to prompt user for replacement words
 # populate the hash user_words with their input
@@ -13,10 +37,14 @@ def get_word(word)
 	return input
 end
 
-content_words.each do |key, value| 
-  get_word(value)
-  user_words[:key] = input
+def build_second_hash(first_hash, second_hash)
+  first_hash.each do |key, value| 
+    get_word(value)
+    second_hash[:key] = input
+  end
 end
+
+build_second_hash(content_words, user_words)
 
 # save progress:
 File.open('finished_madlibs.md', "w") {|file| file.write(user_words.inspect)}
@@ -41,7 +69,7 @@ def build_new_poem(arrayed_poem)
   user_words.each do |key, value|
     new_poem = arrayed_poem.gsub(key.to_s, value)
     return new_poem
-    File.open('finished_madlibs.md', "w") {|file| file.write(new_poem)}
+    File.open('finished_madlibs.md', "w+") {|file| file.write(new_poem)}
   end
 end
 
