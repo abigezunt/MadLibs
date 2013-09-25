@@ -35,10 +35,16 @@ def get_word(word)
 	return input
 end
 
-parts_of_speech.each do |key, value| 
+def build_replacement_hash(your_hash)
+  your_hash.each do |key, value| 
 	get_word(key.to_s)
-	user_words[key: input]
+    replacement_hash[key: input]
+    return: replacement_hash
+  end
 end
+
+user_words = build_replacement_hash(parts_of_speech)
+
 
 
 
