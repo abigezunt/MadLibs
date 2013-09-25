@@ -39,12 +39,13 @@ end
 
 def build_second_hash(first_hash, second_hash)
   first_hash.each do |key, value| 
-    get_word(value)
-    second_hash[:key] = input
+  	replacement = get_word(value)
+    second_hash[:key] = replacement
   end
+  return second_hash
 end
 
-build_second_hash(content_words, user_words)
+user_words = build_second_hash(content_words, user_words)
 
 # save progress:
 File.open('finished_madlibs.md', "w") {|file| file.write(user_words.inspect)}
@@ -65,15 +66,15 @@ poem = file_to_array('lovesong.txt')
 
 # ## Try this next: arrayed_poem = poem.split(/\s{3,}/)
 
-def build_new_poem(arrayed_poem)
-  user_words.each do |key, value|
+def build_new_poem(arrayed_poem, hash)
+  hash.each do |key, value|
     new_poem = arrayed_poem.gsub(key.to_s, value)
     return new_poem
     File.open('finished_madlibs.md', "w+") {|file| file.write(new_poem)}
   end
 end
 
-puts build_new_poem(poem)
+puts build_new_poem(poem, user_words)
 
 
 # Unused Ideas Repository:
