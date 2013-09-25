@@ -10,7 +10,7 @@ user_words = Hash.new
 content_words = Hash.new
 
 content_words = {
-	love: 'musical genre'
+	love: 'musical genre',
 	evening: 'noun',
 	patient: 'noun',
 	deserted: 'adjective',
@@ -51,7 +51,13 @@ end
 user_words = build_second_hash(content_words, user_words)
 
 # save progress:
-File.open('finished_madlibs.md', "a+") {|file| file.write(user_words)}
+
+File.open('prufrock_word_lists.md', "a+") do |file| 
+  file.write("\nThe #{user_words[:love]} song of J. #{name} Prufrock: 
+  	\n#{Time.now}
+  	\n#{name}'s' list saved as: 
+  	\n #{name.downcase} = #{user_words}. \n\n")
+    end
 # automatically add line breaks between each line, 
 # add each line to an array
 
@@ -69,19 +75,20 @@ def build_new_poem(arrayed_poem, hash)
   	new_poem = Array.new
     new_poem = arrayed_poem.each.to_s.gsub(/key/, value)
     return new_poem
-
-    File.open('finished_madlibs.md', "a+") do|file| 
-    	file.write(
-    		"The #{user_words[:love]} song of J. #{name} Prufrock: \n
-    		#{Time.now}: \n#{new_poem}. \n")
-    end
   end
 end
 
+
 file_path = File.expand_path('madlibs/lovesong.txt', File.dirname(__FILE__))
 poem = file_to_array(file_path)
-puts build_new_poem(poem, user_words)
+your_madlib = build_new_poem(poem, user_words)
 
+# Save to a file: 
+File.open('finished_madlibs.md', "a+") do |file| 
+  file.write("\nThe #{user_words[:love]} song of J. #{name} Prufrock: 
+  	\n#{Time.now}
+  	\n#{your_madlib}\n\n")
+end
 
 # Unused Ideas Repository:
 
