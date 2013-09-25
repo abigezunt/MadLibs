@@ -1,4 +1,5 @@
 require_relative 'lovesong'
+require_relative 'my_hash'
 
 content_words = Hash.new
 
@@ -38,8 +39,9 @@ def build_hash(filename, hash)
 		  content_words = {input1: 'input2'}
 		end
 	end
+	File.write('my_hash.txt', 'w+')
 end
 
 
-build_hash('lovesong', content_words) if content_words.length > 2
+build_hash('lovesong', content_words) if File.size('my_hash.txt') > 2
 
