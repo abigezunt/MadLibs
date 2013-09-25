@@ -38,6 +38,7 @@ def build_hash(filename, hash)
 		  input1, input2 = gets.chomp.split(", ")
 		  content_words = {input1: 'input2'}
 		end
+	return content_words
 	end
 	File.write('my_hash.txt', 'w+')
 end
