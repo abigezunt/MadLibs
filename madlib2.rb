@@ -30,14 +30,14 @@ parts_of_speech = {
 # populate the hash user_words with their input
 
 def get_word(word)
-	puts "Give me a #{parts_of_speech[word.to_sym]}."
+	puts "Give me a #{word}."
 	input = gets.chomp
 	return input
 end
 
 parts_of_speech.each do |key, value| 
-	get_word(parts_of_speech[key])
-	user_words[word: input]
+	get_word(key.to_s)
+	user_words[key: input]
 end
 
 
