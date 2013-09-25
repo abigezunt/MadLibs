@@ -44,7 +44,8 @@ def build_replacement_hash(your_hash)
 end
 
 user_words = build_replacement_hash(parts_of_speech)
-
+# save progress:
+File.open('finished_madlibs.md', "w") {|file| file.write(user_words.inspect)}
 
 # automatically add line breaks between each line, 
 # add each line to an array
