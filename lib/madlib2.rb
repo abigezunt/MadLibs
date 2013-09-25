@@ -1,31 +1,8 @@
 require_relative 'lovesong'
 require_relative 'finished_madlibs'
-
+require_relative 'content_words_hash'
 
 user_words = Hash.new
-parts_of_speech = Hash.new
-
-parts_of_speech = {
-	evening: 'noun',
-	patient: 'noun',
-	deserted: 'adjective',
-	muttering: 'gerund',
-	restless: 'adjective',
-	sawdust: 'noun',
-	restaurants: 'plural noun',
-	oyster: 'animal',
-	tedious: 'adjective',
-	insidious: 'adjective',
-	oh: 'exclamation',
-	make: 'verb',
-	overwhelming: 'adjective',
-	lead: 'verb',
-	a_hundred: 'number',
-	yellow: 'color',
-	talking: 'gerund',
-	women: 'plural noun',
-}
-
 
 # use method get_word to prompt user for replacement words
 # populate the hash user_words with their input
@@ -36,7 +13,7 @@ def get_word(word)
 	return input
 end
 
-parts_of_speech.each do |key, value| 
+content_words.each do |key, value| 
   get_word(value)
   user_words[:key] = input
 end
