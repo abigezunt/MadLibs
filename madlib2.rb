@@ -190,16 +190,11 @@ def get_word(word)
 	return input
 end
 
-def build_replacement_hash(your_hash)
-  replacement_hash = Hash.new
-  	your_hash.each do |key, value| 
-	  get_word(value)
-      replacement_hash[:key] = input
-    return replacement_hash
-  end
+parts_of_speech.each do |key, value| 
+  get_word(value)
+  user_words[:key] = input
 end
 
-user_words = build_replacement_hash(parts_of_speech)
 # save progress:
 File.open('finished_madlibs.md', "w") {|file| file.write(user_words.inspect)}
 
