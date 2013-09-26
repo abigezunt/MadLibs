@@ -1,7 +1,8 @@
 # Kai says I don't need to require anything unless I need code from those files.
-# require_relative 'lovesong'
+# require_relative 'lovesong.txt'
 # require_relative 'finished_madlibs'
 # require_relative 'content_words_hash'
+# File.expand_path('lovesong.txt', File.dirname(__FILE__))
 
 puts "What's your name?"
 name = gets.chomp
@@ -13,7 +14,7 @@ content_words = {
 	love: 'musical genre',
 	evening: 'noun',
 	patient: 'noun',
-	deserted: 'adjective',
+	# deserted: 'adjective',
 	# muttering: 'gerund',
 	# restless: 'adjective',
 	# sawdust: 'noun',
@@ -52,9 +53,8 @@ user_words = build_second_hash(content_words, user_words)
 
 # save progress:
 
-File.open('prufrock_word_lists.md', "a+") do |file| 
-  file.write("\nThe #{user_words[:love]} song of J. #{name} Prufrock: 
-  	\n#{Time.now}
+File.open("prufrock_word_lists.md", "a+") do |file| 
+  file.write("\n#{Time.now.asctime}:\nThe #{user_words[:love]} song of J. #{name} Prufrock: 
   	\n#{name}'s' list saved as: 
   	\n #{name.downcase} = #{user_words}. \n\n")
     end
@@ -62,7 +62,7 @@ File.open('prufrock_word_lists.md', "a+") do |file|
 # add each line to an array
 
 def file_to_array(filename)
-	file = File.open(filename)
+	file = File.open(filename, 'r')
 	file.each_line do |line|
 		arr = []
 		arr.push(line + "\n")
@@ -70,54 +70,19 @@ def file_to_array(filename)
 	end
 end
 
-def build_new_poem(arrayed_poem, hash)
-  hash.each do |key, value|
-  	new_poem = Array.new
-    new_poem = arrayed_poem.each.to_s.gsub(/key/, value)
-    return new_poem
-  end
+file_path = File.expand_path('lovesong.txt', File.dirname(__FILE__))
+a = File.open(file_path)
+b = File.read(a)
+user_words.each do |key, value|
+  your_poem = b.gsub(key.to_s, value)
+  return your_poem
 end
 
-
-file_path = File.expand_path('madlibs/lovesong.txt', File.dirname(__FILE__))
-poem = file_to_array(file_path)
-your_madlib = build_new_poem(poem, user_words)
+puts your_poem
 
 # Save to a file: 
-File.open('finished_madlibs.md', "a+") do |file| 
+File.open("The_#{user_words[:love]}_Song_of_J_#{name}_Prufrock.md", "a+") do |file| 
   file.write("\nThe #{user_words[:love]} song of J. #{name} Prufrock: 
-  	\n#{Time.now}
-  	\n#{your_madlib}\n\n")
+  	\n#{Time.now.asctime}
+  	\n#{your_poem}\n\n")
 end
-
-# Unused Ideas Repository:
-
-# ## Try this next: arrayed_poem = poem.split(/\s{3,}/)
-
-# search for words from my hash in each line and 
-# replace them with their replacements from user_words hash
-
-# user_words.each do |key, value|
-# 		poem.each do |line|
-# 			words = line.split(" ")
-# 			if words.include?(key)
-# 				i = words[key].index 
-# 				words.delete_at(i)
-# 				words.insert(i, user_words[key])
-# 			end
-# 		end
-# end
-
-# 
-
-#
-# internet also says:
-#File.open(file_name, "w") {|file| file.puts output_of_gsub}
-
-
-# File.write('my_hash.txt', 'w+')
-
-# File.open(yourfile, 'w') { |file| file.write("your text") }
-
-# File.open(file_name, "w") {|file| file.puts output_of_gsub}
-
