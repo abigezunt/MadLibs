@@ -55,8 +55,8 @@ user_words = build_second_hash(content_words, user_words)
 
 File.open("prufrock_word_lists.md", "a+") do |file| 
   file.write("\n#{Time.now.asctime}:\nThe #{user_words[:love]} song of J. #{name} Prufrock: 
-  	\n#{name}'s' list saved as: 
-  	\n #{name.downcase} = #{user_words}. \n\n")
+  	\n#{name}'s list saved as: 
+  	\n#{name.downcase} = #{user_words}. \n\n")
     end
 # automatically add line breaks between each line, 
 # add each line to an array
@@ -71,18 +71,24 @@ def file_to_array(filename)
 end
 
 file_path = File.expand_path('lovesong.txt', File.dirname(__FILE__))
-a = File.open(file_path)
-b = File.read(a)
-user_words.each do |key, value|
-  your_poem = b.gsub(key.to_s, value)
-  return your_poem
+
+opened_file = File.open(file_path)
+read_file = File.read(opened_file)
+
+def substitute(hash, file)
+  hash.each do |key, value|
+  file = file.gsub(key.to_s, value)
+  end
+  return file
 end
+
+your_poem = substitute(user_words, read_file)
 
 puts your_poem
 
 # Save to a file: 
-File.open("The_#{user_words[:love]}_Song_of_J_#{name}_Prufrock.md", "a+") do |file| 
-  file.write("\nThe #{user_words[:love]} song of J. #{name} Prufrock: 
+File.open("The_#{user_words[:love].capitalize}_Song_of_J_#{name}_Prufrock.md", "a+") do |file| 
+  file.write("\nThe #{user_words[:love].capitalize} Song of J. #{name} Prufrock: 
   	\n#{Time.now.asctime}
   	\n#{your_poem}\n\n")
 end
